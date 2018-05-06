@@ -14,7 +14,9 @@ import java.util.ResourceBundle;
 
 public class TableManager implements Initializable
 {
-	
+	/**
+	 * The name is self-explanatory. This class handles any and all things related to the TableView.
+	 */
 	@FXML
 	private TableView<EmployeeData> tableWindow;
 	

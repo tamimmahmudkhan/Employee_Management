@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class EmployeeDisplayController 
 {
+	/**
+	 * Controller strictly in charge of displaying full employee information. Responsible for launching EditMenu.
+	 */
 	@FXML
 	private Label nameLabel;
 	@FXML

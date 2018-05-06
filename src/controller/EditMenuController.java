@@ -1,7 +1,5 @@
 package controller;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,10 +11,15 @@ import javafx.scene.layout.VBox;
 import model.staff.EmployeeData;
 import model.staff.Position;
 import model.staff.StaffManager;
+
+import java.io.IOException;
  
 
 public class EditMenuController
 {
+	/**
+	 * Controller for the EditMenu.fxml. Handles editing of employee in database through the UI.
+	 */
 	@FXML
 	private TextField fNameText;
 	@FXML 

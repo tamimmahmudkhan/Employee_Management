@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.staff.EmployeeData;
 import model.staff.StaffManager;
 
@@ -16,11 +18,17 @@ import java.util.ResourceBundle;
 
 public class StaffWindowController implements Initializable
 {
-	@FXML private TableManager tableWindow;
+	/**
+		Main Controller classs for the base window of the application.Responsible for loading and displaying the fxml files for employee edit and display.
+	 **/
+	@FXML private TableView<EmployeeData> tableWindow;
 	
 	@FXML
 	private HBox parentNode;
 	
+	@FXML
+	private VBox employeeDisplay;
+
 	@FXML
 	private EmployeeDisplayController employeeDisplayController;
 	

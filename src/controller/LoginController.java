@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable 
 {
+	/**
+	 * Handles Login to application and addition of new employee.
+	 */
 	
 	@FXML
 	private TextField emailText;
