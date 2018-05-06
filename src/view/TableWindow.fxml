@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="tableWindow" prefHeight="720.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TableManager">
+   <columns>
+      <TableColumn fx:id="firstNameCol" prefWidth="187.0" text="First Name" />
+      <TableColumn fx:id="lastNameCol" minWidth="6.0" prefWidth="117.0" text="Last Name" />
+      <TableColumn fx:id="dobCol" prefWidth="94.0" text="Date of Birth" />
+      <TableColumn fx:id="positionCol" minWidth="6.0" prefWidth="84.0" text="Position" />
+      <TableColumn fx:id="workDayCol" minWidth="6.0" prefWidth="94.0" text="Worked Days" />
+      <TableColumn fx:id="absentDayCol" maxWidth="133.0" minWidth="6.0" prefWidth="102.0" text="Absent Days" />
+   </columns>
+</TableView>
