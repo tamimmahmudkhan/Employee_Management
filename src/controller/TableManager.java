@@ -38,7 +38,11 @@ public class TableManager implements Initializable
 	@FXML
 	private StaffWindowController mainController;
 	
-	
+	public void init(StaffWindowController mainController)
+	{
+		this.mainController = mainController;
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
@@ -61,11 +65,14 @@ public class TableManager implements Initializable
 	@FXML
 	private void onMouseClick(MouseEvent event)
 	{
-		if (event.getSource() instanceof EmployeeData)
+		if((event.getClickCount() == 2 ) && (event.getSource() instanceof TableView) )
 		{
-			EmployeeData data = (EmployeeData)event.getSource();
-			mainController.setEmployeeData(data);
-			System.out.println(data.toString());
+			EmployeeData data = tableWindow.getSelectionModel().getSelectedItem();
+			System.out.println("Mouse Clicked");
+			System.out.println(event.getSource());
+			if(data != null) {
+				mainController.displayData(data);
+			}
 		}
 	}
 	

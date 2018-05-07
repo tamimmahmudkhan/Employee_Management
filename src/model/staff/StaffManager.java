@@ -121,15 +121,16 @@ public class StaffManager
 			
 			while (set.next()) 
 			{
-				tableData.add(new EmployeeData(
-							set.getString(1),
-							set.getString(2),
-							set.getString(3),
-							set.getString(4),
-							set.getInt(5),
-							set.getInt(6),
-							set.getString(7),
-							set.getString(8)));
+				tableData.add(new EmployeeData.Builder().
+//						(
+//							set.getString(1),
+//							set.getString(2),
+//							set.getString(3),
+//							set.getString(4),
+//							set.getInt(5),
+//							set.getInt(6),
+//							set.getString(7),
+//							set.getString(8)));
 			}
 			return tableData;
 		} catch (SQLException e) {

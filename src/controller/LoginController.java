@@ -83,13 +83,18 @@ public class LoginController implements Initializable
 		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource(fxml));
-			Scene scene = new Scene(root);
+			Scene scene = new Scene(root, 1280, 720);
+
 			Stage newStage = new Stage();
+
 			newStage.setTitle("Inventory Management");
 			newStage.setScene(scene);
+			newStage.setResizable(false);
+			newStage.setMaximized(true);
+
 			newStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// DONT READ THIS
 			e.printStackTrace();
 		}
 	}

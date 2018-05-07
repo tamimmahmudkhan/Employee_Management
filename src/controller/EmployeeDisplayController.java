@@ -51,16 +51,18 @@ public class EmployeeDisplayController
 	
 	private Node displayEditor()
 	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditMenu.fxml"));
+
+		Node pane = null;
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			editMenuController.injectMainController(mainController);
-			loader.setController(editMenuController);
-			return loader.load(getClass().getResource("/view/EditMenu.fxml"));
+			pane = loader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		editMenuController = loader.getController();
+		editMenuController.injectMainController(mainController);
+		System.out.println(editMenuController);
+		return pane;
 	}
 	
 	public void setLabels(EmployeeData data) 

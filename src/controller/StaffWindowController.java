@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import model.staff.EmployeeData;
 import model.staff.StaffManager;
 
@@ -21,13 +19,10 @@ public class StaffWindowController implements Initializable
 	/**
 		Main Controller classs for the base window of the application.Responsible for loading and displaying the fxml files for employee edit and display.
 	 **/
-	@FXML private TableView<EmployeeData> tableWindow;
+	@FXML private TableManager tableWindowController;
 	
 	@FXML
 	private HBox parentNode;
-	
-	@FXML
-	private VBox employeeDisplay;
 
 	@FXML
 	private EmployeeDisplayController employeeDisplayController;
@@ -51,6 +46,7 @@ public class StaffWindowController implements Initializable
 	{
 		System.out.println(employeeDisplayController);
 		employeeDisplayController.init(this);
+		tableWindowController.init(this);
 	}
 	
 	public void displayData() 
@@ -82,15 +78,17 @@ public class StaffWindowController implements Initializable
 		}
 	}
 	
-	public void setEmployeeData(Object data)
+	public void displayData(EmployeeData data)
 	{
-		if (data instanceof EmployeeData)
-		{
-			employeeData = (EmployeeData) data;
+//		if (data instanceof EmployeeData)
+//		{
+//			employeeData = (EmployeeData) data;
+			employeeDisplayController.setLabels(data);
 			System.out.println(data.toString());
-		}else if (data instanceof ArrayList)
-		{
-			employeeList.add((EmployeeData)data);
-		}
+//		}else if (data instanceof ArrayList)
+//		{
+//			employeeList.add((EmployeeData)data);
+//		}
 	}
+
 }
