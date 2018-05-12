@@ -7,8 +7,8 @@
    <children>
       <HBox fx:id="parentNode" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <fx:include source="EmployeeDisplay.fxml" />
-            <fx:include source="TableWindow.fxml" />
+            <fx:include fx:id="employeeDisplay" source="EmployeeDisplay.fxml" />
+            <fx:include fx:id="tableWindow" source="TableWindow.fxml" />
          </children></HBox>
    </children>
 </AnchorPane>

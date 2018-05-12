@@ -1,19 +1,16 @@
 package controller;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.staff.EmployeeData;
 import model.staff.StaffManager;
+
+import java.io.IOException;
 
 public class RegistrationPanelController 
 {
@@ -35,7 +32,14 @@ public class RegistrationPanelController
 	@FXML
 	private void newAccount(ActionEvent event)
 	{
-		if (manager.addEmployee(fNameText.getText(), lNameText.getText(), dobSelect.getEditor().getText(), "TBA", emailText.getText(), passText.getText())) {
+		EmployeeData data = new EmployeeData.Builder()
+				.fname(fNameText.getText())
+				.lname(lNameText.getText())
+				.dob(dobSelect.getEditor().getText())
+				.email(emailText.getText())
+				.password(passText.getText())
+				.build();
+		if (manager.addEmployee(data)) {
 			successLabel.setText("New Account Created!");
 		}else {
 			successLabel.setText("New Account Creation Failed!");
@@ -59,7 +63,6 @@ public class RegistrationPanelController
 			stage.show();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

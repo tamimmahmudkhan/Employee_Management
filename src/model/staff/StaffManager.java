@@ -1,12 +1,13 @@
 package model.staff;
 
+import database.dbConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import database.dbConnection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class StaffManager 
 {
@@ -14,9 +15,10 @@ public class StaffManager
 	/*
 	 * Manages staff data to and from database.
 	 */
-	
-	private	ResultSet set;
+
 	private PreparedStatement statement;
+	private	ResultSet set;
+
 	
 	private	String  query;
 	
@@ -32,9 +34,10 @@ public class StaffManager
 		StaffManager.commonData = commonData;
 	}
 
-	public boolean addEmployee(EmployeeData data) 
+	
+	public boolean addEmployee(EmployeeData data)
 	{
-		if (!isEmployee(data.getFname(), data.getLname())) 
+		if (!isEmployee(data.getFname(), data.getLname()))
 		{
 			query = "insert into staff(fname,lname,dob,position,workDays,absentDays,email,password) values(?,?,?,?,?,?,?,?)";
 			try(Connection database = dbConnection.getConnection()) {
@@ -42,41 +45,11 @@ public class StaffManager
 				statement.setString(1, data.getFname());
 				statement.setString(2, data.getLname());
 				statement.setString(3, data.getDob());
-				statement.setString(4, data.getDob());
+				statement.setString(4, data.getPosition());
 				statement.setInt(5, 3);     		//To be calculated from day of addition
 				statement.setInt(6, 4);				//To be calculated from day of addition
 				statement.setString(7, data.getEmail());
 				statement.setString(8, data.getPassword());
-				
-				statement.execute();
-				statement.close();
-				database.close();
-				return true;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
-		}else {
-			return false;
-		}
-	}
-	
-	public boolean addEmployee(String fname, String lname, String dob, String position, String email, String pass) 
-	{
-		if (!isEmployee(fname, lname)) 
-		{
-			query = "insert into staff(fname,lname,dob,position,workDays,absentDays,email,password) values(?,?,?,?,?,?,?,?)";
-			try(Connection database = dbConnection.getConnection()) {
-				statement = database.prepareStatement(query);
-				statement.setString(1, fname);
-				statement.setString(2, lname);
-				statement.setString(3, dob);
-				statement.setString(4, position);
-				statement.setInt(5, 3);     		//To be calculated from day of addition
-				statement.setInt(6, 4);				//To be calculated from day of addition
-				statement.setString(7, email);
-				statement.setString(8, pass);
 				
 				statement.execute();
 				statement.close();
@@ -102,7 +75,7 @@ public class StaffManager
 			statement.setString(1, data.getLname());
 			statement.setString(2, data.getDob());
 			statement.setString(3, data.getPosition());
-			
+
 			return statement.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -113,6 +86,7 @@ public class StaffManager
 	
 	public ObservableList<EmployeeData> getData() 
 	{
+		// For reference : 1) fname 2)lname 3)dob 4)position 5)workDays 6)absentDays 7)email 8)password
 		tableData = FXCollections.observableArrayList();
 		query = "select * from staff";
 		
@@ -121,16 +95,16 @@ public class StaffManager
 			
 			while (set.next()) 
 			{
-				tableData.add(new EmployeeData.Builder().
-//						(
-//							set.getString(1),
-//							set.getString(2),
-//							set.getString(3),
-//							set.getString(4),
-//							set.getInt(5),
-//							set.getInt(6),
-//							set.getString(7),
-//							set.getString(8)));
+				tableData.add(new EmployeeData.Builder()
+						.fname(set.getString(1))
+						.lname(set.getString(2))
+						.dob(set.getString(3))
+						.position(set.getString(4))
+						.workDays(set.getInt(5))
+						.absentDays(set.getInt(6))
+						.email(set.getString(7))
+						.password(set.getString(8))
+						.build());
 			}
 			return tableData;
 		} catch (SQLException e) {
@@ -160,5 +134,32 @@ public class StaffManager
 			return false;
 		}
 		return false;
+	}
+
+	private boolean executeStatement(String query, EmployeeData data)
+	{
+
+		try(Connection database = dbConnection.getConnection()) {
+			statement = database.prepareStatement(query);
+			statement.setString(1, data.getFname());
+			statement.setString(2, data.getLname());
+			statement.setString(3, data.getDob());
+			statement.setString(4, data.getPosition());
+			statement.setInt(5, 3);     		//To be calculated from day of addition
+			statement.setInt(6, 4);				//To be calculated from day of addition
+			statement.setString(7, data.getEmail());
+			statement.setString(8, data.getPassword());
+
+			return statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			if(statement != null) try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

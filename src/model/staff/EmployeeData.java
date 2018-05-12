@@ -20,7 +20,7 @@ public class EmployeeData
 		private  IntegerProperty workDays;
 		private  IntegerProperty absentDays;
 
-		public Builder name(final String name)
+		public  Builder fname(final String name)
 		{
 			fname = new SimpleStringProperty(name);
 			return this;
@@ -63,8 +63,6 @@ public class EmployeeData
 
 		public EmployeeData build()
 		{
-			if(fname)
-
 			return new EmployeeData(this);
 		}
 	}

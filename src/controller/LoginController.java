@@ -90,7 +90,6 @@ public class LoginController implements Initializable
 			newStage.setTitle("Inventory Management");
 			newStage.setScene(scene);
 			newStage.setResizable(false);
-			newStage.setMaximized(true);
 
 			newStage.show();
 		} catch (IOException e) {
