@@ -29,7 +29,7 @@ public class EmployeeDisplayController
 	@FXML
 	private VBox employeeDisplay;
 
-	private EditMenuController editMenuController = new EditMenuController();
+	private EditMenuController editMenuController;
 
 	
 	@FXML
@@ -47,6 +47,7 @@ public class EmployeeDisplayController
 		HBox parent = (HBox) employeeDisplay.getParent();
 		parent.getChildren().remove(employeeDisplay);
 		parent.getChildren().add(0, displayEditor());
+		mainController.setEditMenu(editMenuController);
 	}
 	
 	private Node displayEditor()
@@ -56,10 +57,10 @@ public class EmployeeDisplayController
 		Node pane = null;
 		try {
 			pane = loader.load();
+			editMenuController = loader.getController();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		editMenuController = loader.getController();
 		editMenuController.injectMainController(mainController);
 		System.out.println(editMenuController);
 		return pane;
@@ -72,5 +73,10 @@ public class EmployeeDisplayController
 		positionLabel.setText("Position: " + data.getPosition());
 		workDayLabel.setText("Worked Days: " + data.getWorkDays());
 		absentDayLabel.setText("Absent Days: " + data.getAbsentDays());
+	}
+
+	public EditMenuController getEditMenuController()
+	{
+		return editMenuController;
 	}
 }

@@ -27,12 +27,9 @@ public class EditMenuController
 	@FXML
 	private DatePicker dobSelect;
 	@FXML
-	private VBox parentNode;
+	private VBox editMenu;
 	
 	private StaffManager manager = new StaffManager();
-	
-	@FXML
-	private StaffWindowController staffController;
 	
 	@FXML
 	private ComboBox<Position> positionBox;
@@ -47,21 +44,22 @@ public class EditMenuController
 	@FXML
 	private void previousMenu()
 	{
-		HBox parent = (HBox) parentNode.getParent();
+		HBox parent = (HBox) editMenu.getParent();
 		
-		FXMLLoader loader = new FXMLLoader();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EmployeeDisplay.fxml"));
 		try {
-			Node newNode = loader.load(getClass().getResource("/view/EmployeeDisplay.fxml"));
+			Node newNode = loader.load();
+			mainController.setEmployeeDisplayController(loader.getController());
 			parent.getChildren().remove(0);
 			parent.getChildren().add(0, newNode);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public void populateFields(EmployeeData data) 
 	{
+		System.out.println("Should Populate Fields man");
 		fNameText.setText(data.getFname());
 		lNameText.setText(data.getLname());
 		dobSelect.getEditor().setText(data.getDob());
@@ -71,10 +69,6 @@ public class EditMenuController
 	public void editEmployee() 
 	{
 		System.out.println(mainController);
-//		EmployeeData newData = new EmployeeData(fNameText.getText(), 
-//				lNameText.getText(),
-//				dobSelect.getEditor().getText(),
-//				positionBox.getSelectionModel().getSelectedItem().toString(),
-//				3, 4, user, pass);
+
 	}
 }

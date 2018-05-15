@@ -53,6 +53,7 @@ public class LoginController implements Initializable
 	{
 		Window window = ((Button)event.getSource()).getScene().getWindow();
 
+		launchWindow((Stage)window,	"/view/StaffWindow.fxml"); // DELETE DIS
 		if (positionBox.getSelectionModel().getSelectedItem() == Position.Admin) {
 			if (manager.isEmployee(emailText.getText(), passText.getText())) 
 			{
@@ -84,6 +85,7 @@ public class LoginController implements Initializable
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource(fxml));
 			Scene scene = new Scene(root, 1280, 720);
+			scene.getStylesheets().add(getClass().getResource("/view/themes/modena_dark.css").toExternalForm());
 
 			Stage newStage = new Stage();
 

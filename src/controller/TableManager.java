@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,6 +53,8 @@ public class TableManager implements Initializable
 		dobCol.setCellValueFactory(new PropertyValueFactory<>("dob"));
 		workDayCol.setCellValueFactory(new PropertyValueFactory<>("workDays"));
 		absentDayCol.setCellValueFactory(new PropertyValueFactory<>("absentDays"));
+
+		tableWindow.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		loadData();
 	}

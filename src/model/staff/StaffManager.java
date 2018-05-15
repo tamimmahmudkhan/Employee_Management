@@ -23,18 +23,7 @@ public class StaffManager
 	private	String  query;
 	
 	private	ObservableList<EmployeeData> tableData;
-	
-	private static EmployeeData commonData;
-	
-	public EmployeeData getCommonData() {
-		return commonData;
-	}
 
-	public void setCommonData(EmployeeData commonData) {
-		StaffManager.commonData = commonData;
-	}
-
-	
 	public boolean addEmployee(EmployeeData data)
 	{
 		if (!isEmployee(data.getFname(), data.getLname()))
