@@ -61,4 +61,9 @@ public class StaffWindowController implements Initializable {
 		}
 	}
 
+	public void refreshTable()
+	{
+		tableWindowController.refresh();
+	}
+
 }

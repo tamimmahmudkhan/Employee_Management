@@ -56,10 +56,10 @@ public class TableManager implements Initializable
 
 		tableWindow.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
-		loadData();
+		refresh();
 	}
 
-	private void loadData()
+	public void refresh()
 	{
 		tableWindow.setItems(null);
 		tableWindow.setItems(manager.getData());

@@ -60,10 +60,10 @@ public class StaffManager
 		try(Connection database = dbConnection.getConnection())
 		{
 			statement = database.prepareStatement(query);
-			statement.setString(0, data.getFname());
-			statement.setString(1, data.getLname());
-			statement.setString(2, data.getDob());
-			statement.setString(3, data.getPosition());
+			statement.setString(1, data.getFname());
+			statement.setString(2, data.getLname());
+			statement.setString(3, data.getDob());
+			statement.setString(4, data.getPosition());
 
 			return statement.execute();
 		} catch (SQLException e) {
