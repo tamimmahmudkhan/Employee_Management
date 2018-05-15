@@ -28,6 +28,8 @@ public class EditMenuController
 	private DatePicker dobSelect;
 	@FXML
 	private VBox editMenu;
+
+	private EmployeeData workingEmployeeData;
 	
 	private StaffManager manager = new StaffManager();
 	
@@ -49,7 +51,9 @@ public class EditMenuController
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EmployeeDisplay.fxml"));
 		try {
 			Node newNode = loader.load();
-			mainController.setEmployeeDisplayController(loader.getController());
+			EmployeeDisplayController controller = loader.getController();
+			controller.init(mainController);
+			mainController.setEmployeeDisplayController(controller);
 			parent.getChildren().remove(0);
 			parent.getChildren().add(0, newNode);
 		} catch (IOException e) {
@@ -59,7 +63,7 @@ public class EditMenuController
 	
 	public void populateFields(EmployeeData data) 
 	{
-		System.out.println("Should Populate Fields man");
+		workingEmployeeData = data;
 		fNameText.setText(data.getFname());
 		lNameText.setText(data.getLname());
 		dobSelect.getEditor().setText(data.getDob());
@@ -68,7 +72,18 @@ public class EditMenuController
 	@FXML
 	public void editEmployee() 
 	{
-		System.out.println(mainController);
+		if (manager.isEmployee(workingEmployeeData))
+		{
+			EmployeeData editedEmployeeData = new EmployeeData.Builder()
+					.fname(fNameText.getText())
+					.lname(lNameText.getText())
+					.dob(dobSelect.getEditor().getText())
+					.position(positionBox.getSelectionModel().getSelectedItem().toString())
+					.build();
+
+			manager.removeEmployee(workingEmployeeData);
+			manager.addEmployee(editedEmployeeData);
+		}
 
 	}
 }

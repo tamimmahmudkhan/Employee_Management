@@ -26,7 +26,7 @@ public class StaffManager
 
 	public boolean addEmployee(EmployeeData data)
 	{
-		if (!isEmployee(data.getFname(), data.getLname()))
+		if (!checkEmployee(data.getFname(), data.getLname()))
 		{
 			query = "insert into staff(fname,lname,dob,position,workDays,absentDays,email,password) values(?,?,?,?,?,?,?,?)";
 			try(Connection database = dbConnection.getConnection()) {
@@ -103,7 +103,7 @@ public class StaffManager
 		return null;
 	}
 	
-	public boolean isEmployee(String email, String password)
+	public boolean checkEmployee(String email, String password)
 	{
 		query = "select * from staff where email=? and password=?"; //and dob=? and position=? and workDays=? and absentDays=?";
 		try(Connection connection = dbConnection.getConnection()) {
@@ -124,6 +124,12 @@ public class StaffManager
 		}
 		return false;
 	}
+
+	public boolean isEmployee(EmployeeData data)
+	{
+		return checkEmployee(data.getEmail(), data.getPassword());
+	}
+
 
 	private boolean executeStatement(String query, EmployeeData data)
 	{

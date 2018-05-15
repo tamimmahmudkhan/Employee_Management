@@ -55,14 +55,14 @@ public class LoginController implements Initializable
 
 		launchWindow((Stage)window,	"/view/StaffWindow.fxml"); // DELETE DIS
 		if (positionBox.getSelectionModel().getSelectedItem() == Position.Admin) {
-			if (manager.isEmployee(emailText.getText(), passText.getText())) 
+			if (manager.checkEmployee(emailText.getText(), passText.getText()))
 			{
 				launchWindow((Stage)window,	"/view/StaffWindow.fxml");
 			}else {
 				promptLabel.setText("Unauthorized User: Admin");
 			}
 		}else {
-			if (manager.isEmployee(emailText.getText(), passText.getText())) 
+			if (manager.checkEmployee(emailText.getText(), passText.getText()))
 			{
 				launchWindow((Stage)window, "/view/StaffWindow.fxml");
 			}else {

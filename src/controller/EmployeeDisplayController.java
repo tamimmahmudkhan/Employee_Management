@@ -47,7 +47,10 @@ public class EmployeeDisplayController
 		HBox parent = (HBox) employeeDisplay.getParent();
 		parent.getChildren().remove(employeeDisplay);
 		parent.getChildren().add(0, displayEditor());
-		mainController.setEditMenu(editMenuController);
+		if (editMenuController != null)
+		{
+			mainController.setEditMenu(editMenuController);
+		}
 	}
 	
 	private Node displayEditor()
