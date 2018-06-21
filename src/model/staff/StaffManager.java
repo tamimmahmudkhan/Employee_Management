@@ -56,14 +56,13 @@ public class StaffManager
 	
 	public boolean removeEmployee(EmployeeData data) 
 	{
-		query = "delete from staff where fname=? and lname=? and dob=? and position=?";
+		query = "delete from staff where fname=? and lname=? and dob=?";
 		try(Connection database = dbConnection.getConnection())
 		{
 			statement = database.prepareStatement(query);
 			statement.setString(1, data.getFname());
 			statement.setString(2, data.getLname());
 			statement.setString(3, data.getDob());
-			statement.setString(4, data.getPosition());
 
 			return statement.execute();
 		} catch (SQLException e) {
