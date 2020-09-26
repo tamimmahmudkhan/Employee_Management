@@ -89,7 +89,7 @@ public class LoginController implements Initializable
 
 			Stage newStage = new Stage();
 
-			newStage.setTitle("Inventory Management");
+			newStage.setTitle("Employee Management");
 			newStage.setScene(scene);
 			newStage.setResizable(false);
 
